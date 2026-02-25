@@ -34,11 +34,18 @@ transform = Transform3D(1, 0, 0, 0, 0.9361823, 0.35151488, 0, -0.35151488, 0.936
 light_energy = 0.273
 
 [node name="CameraController" parent="." node_paths=PackedStringArray("lookTarget", "camera") instance=ExtResource("2_bhu08")]
-lookTarget = NodePath("../CharacterBody3D")
+lookTarget = NodePath("../Player")
 camera = NodePath("../Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 
-[node name="CharacterBody3D" parent="." node_paths=PackedStringArray("CameraPivot") instance=ExtResource("3_bhu08")]
+[node name="Player" parent="." node_paths=PackedStringArray("CameraPivot") instance=ExtResource("3_bhu08")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1983616, 0)
 CameraPivot = NodePath("../CameraController")
+
+[node name="UIManager" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9361823, 0.35151488, 0, -0.35151488, 0.9361823, -9.701207, 2.8718038, 6.5048943)
+
+[node name="VFXManager" type="Node3D" parent="."]
+
+[node name="SFXManager" type="Node3D" parent="."]
