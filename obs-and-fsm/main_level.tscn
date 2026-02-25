@@ -1,3 +1,44 @@
-[gd_scene format=3 uid="uid://b71xwp6065e8k"]
+[gd_scene load_steps=7 format=3 uid="uid://b71xwp6065e8k"]
+
+[ext_resource type="Texture2D" uid="uid://clcyuwlw4t2b6" path="res://moon_01_diff_4k.jpg" id="1_6614m"]
+[ext_resource type="PackedScene" path="res://camera_controller.tscn" id="2_bhu08"]
+[ext_resource type="PackedScene" uid="uid://cuewm7hmsn0ia" path="res://player.tscn" id="3_bhu08"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05as6"]
+albedo_texture = ExtResource("1_6614m")
+anisotropy = 0.62
+subsurf_scatter_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ymk8"]
+lightmap_size_hint = Vector2i(14, 21)
+uv2_padding = 4.85
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4mnpp"]
 
 [node name="MainLevel" type="Node3D"]
+
+[node name="Envinronment" type="Node" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Envinronment"]
+transform = Transform3D(123.99186, 0, 0, 0, 0.32150757, 0, 0, 0, 81.66162, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Envinronment/StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_05as6")
+mesh = SubResource("BoxMesh_5ymk8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Envinronment/StaticBody3D"]
+shape = SubResource("BoxShape3D_4mnpp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Envinronment"]
+transform = Transform3D(1, 0, 0, 0, 0.9361823, 0.35151488, 0, -0.35151488, 0.9361823, -9.701207, 2.8718038, 6.5048943)
+light_energy = 0.273
+
+[node name="CameraController" parent="." node_paths=PackedStringArray("lookTarget", "camera") instance=ExtResource("2_bhu08")]
+lookTarget = NodePath("../CharacterBody3D")
+camera = NodePath("../Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="CharacterBody3D" parent="." node_paths=PackedStringArray("CameraPivot") instance=ExtResource("3_bhu08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1983616, 0)
+CameraPivot = NodePath("../CameraController")

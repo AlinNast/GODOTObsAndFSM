@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="OBSAndFSM"
-config/features=PackedStringArray("4.5", "Forward Plus")
+run/main_scene="uid://b71xwp6065e8k"
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="OBSAndFSM"
+
+[input]
+
+Jump={
+"deadzone": 0.2,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":true,"script":null)
+]
+}
