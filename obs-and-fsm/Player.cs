@@ -5,13 +5,21 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public partial class Player : CharacterBody3D, ICameraController
 {
-	public const float Speed = 5.0f;
+    // Player movement parameters
+    public const float Speed = 5.0f;
 	public const float JumpVelocity = 4.5f;
     public float Acceleration = 15.0f;
     public float Friction = 20.0f;
 
+    // Player health parameters
+    private float _health = 100.0f;
+    public float MaxHealth = 100.0f;
+
     // This allows you to link your CameraController in the editor
     [Export] public Node3D CameraPivot;
+
+    // This event can be used to update the UI when the player's health changes
+    [Signal] public delegate void HealthChangedEventHandler(float current, float max);
 
     public void ChangeToCinematic()
     {
@@ -37,7 +45,8 @@ public partial class Player : CharacterBody3D, ICameraController
         if (Input.IsActionJustPressed("Jump") && IsOnFloor())
         {
             velocity.Y = JumpVelocity;
-		}
+            TakeDamage(10); // Example: Take damage when jumping (for testing purposes)
+        }
 
         // Get Joystick Input (-1.0 to 1.0)
         float inputX = Input.GetJoyAxis(0, JoyAxis.LeftX);
@@ -89,4 +98,15 @@ public partial class Player : CharacterBody3D, ICameraController
         Velocity = velocity;
 		MoveAndSlide();
 	}
+
+    public void TakeDamage(float amount)
+    {
+        // Subtract damage and clamp so it doesn't go below 0
+        _health = Mathf.Clamp(_health - amount, 0, MaxHealth);
+
+        // 4. Emit the signal (The "Shout")
+        // This sends the current numbers to anyone listening (the UI Manager)
+        EmitSignal(SignalName.HealthChanged, _health, MaxHealth);
+
+    }
 }

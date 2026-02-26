@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b71xwp6065e8k"]
+[gd_scene load_steps=11 format=3 uid="uid://b71xwp6065e8k"]
 
-[ext_resource type="Texture2D" uid="uid://clcyuwlw4t2b6" path="res://moon_01_diff_4k.jpg" id="1_6614m"]
+[ext_resource type="Texture2D" uid="uid://clcyuwlw4t2b6" path="res://images/moon_01_diff_4k.jpg" id="1_6614m"]
 [ext_resource type="PackedScene" uid="uid://dhtqvq6hbfnvd" path="res://camera_controller.tscn" id="2_bhu08"]
 [ext_resource type="PackedScene" uid="uid://cuewm7hmsn0ia" path="res://player.tscn" id="3_bhu08"]
+[ext_resource type="Script" uid="uid://cjegponi651ft" path="res://UiManager.cs" id="4_05as6"]
+[ext_resource type="Script" uid="uid://ckpdyvm50bvfm" path="res://VfxManager.cs" id="5_5ymk8"]
+[ext_resource type="PackedScene" uid="uid://dvhmw4eovmob2" path="res://hit_vfx.tscn" id="6_4mnpp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05as6"]
 albedo_texture = ExtResource("1_6614m")
@@ -14,6 +17,9 @@ lightmap_size_hint = Vector2i(14, 21)
 uv2_padding = 4.85
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4mnpp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhu08"]
+bg_color = Color(9.505823e-06, 0.55303764, 0.1076361, 1)
 
 [node name="MainLevel" type="Node3D"]
 
@@ -43,20 +49,25 @@ camera = NodePath("../Camera3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1983616, 0)
 CameraPivot = NodePath("../CameraController")
 
-[node name="UIManager" type="Node3D" parent="."]
+[node name="UIManager" type="Node3D" parent="." node_paths=PackedStringArray("HealthBar", "PlayerNode")]
 transform = Transform3D(1, 0, 0, 0, 0.9361823, 0.35151488, 0, -0.35151488, 0.9361823, -9.701207, 2.8718038, 6.5048943)
+script = ExtResource("4_05as6")
+HealthBar = NodePath("../HUD/HealthBar")
+PlayerNode = NodePath("../Player")
 
-[node name="VFXManager" type="Node3D" parent="."]
+[node name="VFXManager" type="Node3D" parent="." node_paths=PackedStringArray("PlayerNode")]
+script = ExtResource("5_5ymk8")
+SplatScene = ExtResource("6_4mnpp")
+PlayerNode = NodePath("../Player")
 
 [node name="SFXManager" type="Node3D" parent="."]
 
-[node name="HealthBar" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar"]
-offset_right = 1154.0
-offset_bottom = 144.0
+[node name="HealthBar" type="ProgressBar" parent="HUD"]
+offset_right = 1142.0
+offset_bottom = 121.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_bhu08")
 max_value = 10.0
 value = 5.0
-fill_mode = 6
-tint_under = Color(0.427493, 0.42749307, 0.42749307, 1)
-tint_over = Color(1, 0.48235294, 1, 1)
+show_percentage = false
