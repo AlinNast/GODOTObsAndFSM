@@ -15,3 +15,15 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_i3pqv")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+spot_range = 16.668114
+spot_angle = 7.2794485
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.061867237, 0.99808437, 0, -0.99808437, 0.061867237, 0, 16.71961, 1.3329067)
+light_energy = 2.814
+light_indirect_energy = 3.309
+light_volumetric_fog_energy = 2.814
+spot_range = 37.376
+spot_angle = 7.2794485

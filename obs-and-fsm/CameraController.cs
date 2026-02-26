@@ -107,7 +107,7 @@ public partial class CameraController : Node3D, ICameraController
         // Apply Acceleration only when input is above the deadzone, otherwise apply friction to slow down the camera when the joystick is released.
         if (Mathf.Abs(Input.GetJoyAxis(0, JoyAxis.RightX)) > joystickDeadzone)
         {
-            azimuthVelocity += delta * (float)(Input.GetJoyAxis(0, JoyAxis.RightX)) * acceleration;
+            azimuthVelocity += delta * -(float)(Input.GetJoyAxis(0, JoyAxis.RightX)) * acceleration;
         }
         else 
         {
@@ -124,7 +124,7 @@ public partial class CameraController : Node3D, ICameraController
         // Zenith control like azimuth
         if (Mathf.Abs(Input.GetJoyAxis(0, JoyAxis.RightY)) > joystickDeadzone)
         {
-            zenithVelocity += delta * (float)(Input.GetJoyAxis(0, JoyAxis.RightY)) * acceleration;
+            zenithVelocity += delta * -(float)(Input.GetJoyAxis(0, JoyAxis.RightY)) * acceleration;
         }
         else
         {

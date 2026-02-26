@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dhhhidfmkph0k" path="res://HitVfx.cs" id="2_a5eyx"]
 
 [node name="HitVFX" type="Sprite3D"]
+transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, 0, 0, 0)
 modulate = Color(0.44313726, 0, 0, 1)
 billboard = 2
 texture = ExtResource("1_f3m76")

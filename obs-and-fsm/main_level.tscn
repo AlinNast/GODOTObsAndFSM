@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b71xwp6065e8k"]
+[gd_scene load_steps=14 format=3 uid="uid://b71xwp6065e8k"]
 
 [ext_resource type="Texture2D" uid="uid://clcyuwlw4t2b6" path="res://images/moon_01_diff_4k.jpg" id="1_6614m"]
 [ext_resource type="PackedScene" uid="uid://dhtqvq6hbfnvd" path="res://camera_controller.tscn" id="2_bhu08"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://cjegponi651ft" path="res://UiManager.cs" id="4_05as6"]
 [ext_resource type="Script" uid="uid://ckpdyvm50bvfm" path="res://VfxManager.cs" id="5_5ymk8"]
 [ext_resource type="PackedScene" uid="uid://dvhmw4eovmob2" path="res://hit_vfx.tscn" id="6_4mnpp"]
+[ext_resource type="Script" uid="uid://dcna6xtri7daq" path="res://SfxManager.cs" id="7_eqmdw"]
+[ext_resource type="AudioStream" uid="uid://b6rouv5ici4bc" path="res://images/HitSound.wav" id="8_uhmka"]
+[ext_resource type="PackedScene" uid="uid://dnsp3ox81cg6l" path="res://enemy.tscn" id="9_uhmka"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05as6"]
 albedo_texture = ExtResource("1_6614m")
@@ -60,7 +63,13 @@ script = ExtResource("5_5ymk8")
 SplatScene = ExtResource("6_4mnpp")
 PlayerNode = NodePath("../Player")
 
-[node name="SFXManager" type="Node3D" parent="."]
+[node name="SFXManager" type="Node3D" parent="." node_paths=PackedStringArray("PlayerNode", "HitSoundPlayer")]
+script = ExtResource("7_eqmdw")
+PlayerNode = NodePath("../Player")
+HitSoundPlayer = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SFXManager"]
+stream = ExtResource("8_uhmka")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -71,3 +80,23 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_bhu08")
 max_value = 10.0
 value = 5.0
 show_percentage = false
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("TargetPlayer") instance=ExtResource("9_uhmka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.381685, 0.785789, -12.836018)
+TargetPlayer = NodePath("../Player")
+
+[node name="Enemy2" parent="." node_paths=PackedStringArray("TargetPlayer") instance=ExtResource("9_uhmka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9404144, 0.785789, -18.397266)
+TargetPlayer = NodePath("../Player")
+
+[node name="Enemy4" parent="." node_paths=PackedStringArray("TargetPlayer") instance=ExtResource("9_uhmka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.194946, 0.785789, 2.3115692)
+TargetPlayer = NodePath("../Player")
+
+[node name="Enemy5" parent="." node_paths=PackedStringArray("TargetPlayer") instance=ExtResource("9_uhmka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.40691, 0.785789, 26.903437)
+TargetPlayer = NodePath("../Player")
+
+[node name="Enemy3" parent="." node_paths=PackedStringArray("TargetPlayer") instance=ExtResource("9_uhmka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.369997, 0.785789, 2.6935625)
+TargetPlayer = NodePath("../Player")

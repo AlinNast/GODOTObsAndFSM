@@ -45,7 +45,6 @@ public partial class Player : CharacterBody3D, ICameraController
         if (Input.IsActionJustPressed("Jump") && IsOnFloor())
         {
             velocity.Y = JumpVelocity;
-            TakeDamage(10); // Example: Take damage when jumping (for testing purposes)
         }
 
         // Get Joystick Input (-1.0 to 1.0)
