@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b71xwp6065e8k"]
 
 [ext_resource type="Texture2D" uid="uid://clcyuwlw4t2b6" path="res://moon_01_diff_4k.jpg" id="1_6614m"]
-[ext_resource type="PackedScene" path="res://camera_controller.tscn" id="2_bhu08"]
+[ext_resource type="PackedScene" uid="uid://dhtqvq6hbfnvd" path="res://camera_controller.tscn" id="2_bhu08"]
 [ext_resource type="PackedScene" uid="uid://cuewm7hmsn0ia" path="res://player.tscn" id="3_bhu08"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05as6"]
@@ -49,3 +49,14 @@ transform = Transform3D(1, 0, 0, 0, 0.9361823, 0.35151488, 0, -0.35151488, 0.936
 [node name="VFXManager" type="Node3D" parent="."]
 
 [node name="SFXManager" type="Node3D" parent="."]
+
+[node name="HealthBar" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar"]
+offset_right = 1154.0
+offset_bottom = 144.0
+max_value = 10.0
+value = 5.0
+fill_mode = 6
+tint_under = Color(0.427493, 0.42749307, 0.42749307, 1)
+tint_over = Color(1, 0.48235294, 1, 1)
