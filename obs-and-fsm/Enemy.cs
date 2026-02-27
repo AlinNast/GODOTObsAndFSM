@@ -69,7 +69,7 @@ public partial class Enemy : CharacterBody3D
         if (body is Player player)
         {
             GD.Print("Enemy head hit!"); // For testing purposes, you can replace this with actual logic (e.g., take damage, play sound, etc.)
-            player.Velocity = new Vector3(player.Velocity.X, 10.0f, player.Velocity.Z);
+            player.Velocity = new Vector3(player.Velocity.X, 5.0f, player.Velocity.Z);
             ChangeState(EnemyState.Dead); 
         }
     }

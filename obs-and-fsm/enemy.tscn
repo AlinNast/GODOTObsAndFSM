@@ -17,7 +17,7 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7k104"]
 height = 0.21807861
-radius = 0.61328125
+radius = 0.7290039
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_4gyqm"]
 height = 0.33569336

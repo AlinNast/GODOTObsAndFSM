@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://b71xwp6065e8k"]
 
 [ext_resource type="Texture2D" uid="uid://clcyuwlw4t2b6" path="res://images/moon_01_diff_4k.jpg" id="1_6614m"]
-[ext_resource type="PackedScene" uid="uid://dhtqvq6hbfnvd" path="res://camera_controller.tscn" id="2_bhu08"]
+[ext_resource type="PackedScene" path="res://camera_controller.tscn" id="2_bhu08"]
 [ext_resource type="PackedScene" uid="uid://cuewm7hmsn0ia" path="res://player.tscn" id="3_bhu08"]
 [ext_resource type="Script" uid="uid://cjegponi651ft" path="res://UiManager.cs" id="4_05as6"]
 [ext_resource type="Script" uid="uid://ckpdyvm50bvfm" path="res://VfxManager.cs" id="5_5ymk8"]
@@ -99,4 +99,16 @@ TargetPlayer = NodePath("../Player")
 
 [node name="Enemy3" parent="." node_paths=PackedStringArray("TargetPlayer") instance=ExtResource("9_uhmka")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.369997, 0.785789, 2.6935625)
+TargetPlayer = NodePath("../Player")
+
+[node name="Enemy7" parent="." node_paths=PackedStringArray("TargetPlayer") instance=ExtResource("9_uhmka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.798292, 0.785789, -5.3050833)
+TargetPlayer = NodePath("../Player")
+
+[node name="Enemy8" parent="." node_paths=PackedStringArray("TargetPlayer") instance=ExtResource("9_uhmka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.665718, 0.785789, -14.684953)
+TargetPlayer = NodePath("../Player")
+
+[node name="Enemy6" parent="." node_paths=PackedStringArray("TargetPlayer") instance=ExtResource("9_uhmka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.10662, 0.785789, 11.5643015)
 TargetPlayer = NodePath("../Player")
